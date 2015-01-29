@@ -4,14 +4,15 @@ var TodoActions = require('./todo_actions.js');
 
 var TodoAddForm = React.createClass({
     submitTodo: function (event) {
-        TodoActions.addItem();
+        var todoTitle = this.refs.todo.getDOMNode().value.trim();
+        TodoActions.addItem(todoTitle);
         event.preventDefault();
     },
     render: function () {
         return (
-            <form>
-                <input className="input" type="text" placeholder="What needs to be done" />
-                <input className="button" type="button" value="Add Todo" onClick={this.submitTodo}/>
+            <form onSubmit={this.submitTodo}>
+                <input className="input" type="text" placeholder="What needs to be done" ref="todo" />
+                <input className="button" type="submit" value="Add Todo" />
             </form>
         );        
     }

@@ -5,15 +5,18 @@ var TodoActions = require('./todo_actions.js');
 var TodoListStore = Reflux.createStore({
     listenables: [TodoActions],
     getInitialState: function () {
-        this.list = [];
+        this.list = ["yo", "flo", "ro"];
         return this.list;
     },
 
     onCompleteItem: function (item) {
        console.log("completed item");                 
     },
+    onCompleteAll: function () {
+        console.log("completed all");               
+    },
     onAddItem: function (item) {
-       console.log("added item"); 
+        this.updateList([item].concat(this.list));
     },
     updateList: function (list) {
         this.list = list;

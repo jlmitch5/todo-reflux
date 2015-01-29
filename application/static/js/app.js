@@ -57,13 +57,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(2);
+	var Reflux = __webpack_require__(170);
 
 	var TodoContainer = __webpack_require__(149);
+	var TodoStore = __webpack_require__(192);
 
 	var App = React.createClass({displayName: "App",
+	    mixins: [Reflux.connect(TodoStore, "list")],
 	    render: function () {
 	        return (
-	            React.createElement(TodoContainer, null)
+	            React.createElement(TodoContainer, {todos: this.state.list})
 	        );
 	    }
 	});
@@ -18924,14 +18927,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(2);
-	var Reflux = __webpack_require__(170);
 
 	var TodoList = __webpack_require__(150);
 	var TodoAddForm = __webpack_require__(151);
-	var TodoStore = __webpack_require__(192);
+	var TodoFooter = __webpack_require__(193);
+
 
 	var TodoContainer = React.createClass({displayName: "TodoContainer",
-	    mixins: [Reflux.connect(TodoStore, "list")],
 	    render: function () {
 	        return (
 	            React.createElement("div", {className: "todo-container"}, 
@@ -18942,13 +18944,10 @@
 	                    React.createElement(TodoAddForm, null)
 	                ), 
 	                React.createElement("div", {className: "todo-list"}, 
-	                    React.createElement(TodoList, null)
+	                    React.createElement(TodoList, {todos: this.props.todos})
 	                ), 
 	                React.createElement("div", {className: "todo-footer"}, 
-	                    React.createElement("ul", null, 
-	                        React.createElement("li", {className: "todos-left"}, "2 items left"), 
-	                        React.createElement("li", {className: "clear-all"}, React.createElement("a", null, "Mark all as complete"))
-	                    )
+	                    React.createElement(TodoFooter, null)
 	                )
 	            )    
 	        );        
@@ -18971,10 +18970,7 @@
 	var TodoList = React.createClass({displayName: "TodoList",
 	    render: function () {
 
-	        var items = ["Discuss report with John",
-	                     "Get a haircut",
-	                     "Pay electricity bill",
-	                     "Check gym hours"].map(function(item, index) {
+	        var items = this.props.todos.map(function(item, index) {
 	            return React.createElement(TodoItem, {data: item, index: index})
 	        });
 
@@ -18995,14 +18991,15 @@
 
 	var TodoAddForm = React.createClass({displayName: "TodoAddForm",
 	    submitTodo: function (event) {
-	        TodoActions.addItem();
+	        var todoTitle = this.refs.todo.getDOMNode().value.trim();
+	        TodoActions.addItem(todoTitle);
 	        event.preventDefault();
 	    },
 	    render: function () {
 	        return (
-	            React.createElement("form", null, 
-	                React.createElement("input", {className: "input", type: "text", placeholder: "What needs to be done"}), 
-	                React.createElement("input", {className: "button", type: "button", value: "Add Todo", onClick: this.submitTodo})
+	            React.createElement("form", {onSubmit: this.submitTodo}, 
+	                React.createElement("input", {className: "input", type: "text", placeholder: "What needs to be done", ref: "todo"}), 
+	                React.createElement("input", {className: "button", type: "submit", value: "Add Todo"})
 	            )
 	        );        
 	    }
@@ -20837,7 +20834,7 @@
 	var TodoActions = Reflux.createActions([
 	    "completeItem",     //called when ticking checkbox
 	    "addItem",          //called when clicking Add todo button
-	    "clearAll"          //called when clicking link in footer
+	    "completeAll"          //called when clicking link in footer
 	]);
 
 
@@ -22301,15 +22298,18 @@
 	var TodoListStore = Reflux.createStore({
 	    listenables: [TodoActions],
 	    getInitialState: function () {
-	        this.list = [];
+	        this.list = ["yo", "flo", "ro"];
 	        return this.list;
 	    },
 
 	    onCompleteItem: function (item) {
 	       console.log("completed item");                 
 	    },
+	    onCompleteAll: function () {
+	        console.log("completed all");               
+	    },
 	    onAddItem: function (item) {
-	       console.log("added item"); 
+	        this.updateList([item].concat(this.list));
 	    },
 	    updateList: function (list) {
 	        this.list = list;
@@ -22319,6 +22319,50 @@
 
 	module.exports = TodoListStore;
 
+
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(2);
+
+	var TodoActions = __webpack_require__(169);
+
+	var TodoCounter = __webpack_require__(194);
+
+	var TodoFooter = React.createClass({displayName: "TodoFooter",
+	    markAllCompleted: function () {
+	        TodoActions.completeAll();                  
+	    },
+	    render: function () {
+	        return (
+	            React.createElement("ul", null, 
+	                React.createElement("li", {className: "todos-left"}, React.createElement(TodoCounter, null)), 
+	                React.createElement("li", {className: "clear-all"}, React.createElement("a", {onClick: this.markAllCompleted}, "Mark all as complete"))
+	            )
+	        );        
+	    }
+	});
+
+	module.exports = TodoFooter;
+
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(2);
+
+	var TodoCounter = React.createClass({displayName: "TodoCounter",
+	    render: function () {
+	        return (
+	            React.createElement("span", null, "2 items left")    
+	        );
+	    }
+	});
+
+	module.exports = TodoCounter;
 
 
 /***/ }
