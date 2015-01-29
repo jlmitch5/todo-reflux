@@ -19,7 +19,7 @@ var TodoContainer = React.createClass({
                     <TodoList todos={this.props.todos}/>
                 </div>
                 <div className="todo-footer">
-                    <TodoFooter />
+                    <TodoFooter counter={this.props.counter} />
                 </div>
             </div>    
         );        

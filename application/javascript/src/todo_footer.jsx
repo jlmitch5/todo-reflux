@@ -11,7 +11,7 @@ var TodoFooter = React.createClass({
     render: function () {
         return (
             <ul>
-                <li className="todos-left"><TodoCounter /></li>
+                <li className="todos-left"><TodoCounter counter={this.props.counter} /></li>
                 <li className="clear-all"><a onClick={this.markAllCompleted}>Mark all as complete</a></li>
             </ul>
         );        
