@@ -12,16 +12,20 @@ module.exports = {
                 loader: "jsxhint-loader"
             }    
         ],
-        jshint:  {
-            camelCase: true,
-            emitErrors: true,
-            failOnHint: false
-        },
-        jsxhint: {
-            camelCase: true
-        },
-        loaders: [
-                { test: /\.jsx$/, loader: 'jsx-loader'}
-            ]
-    }
+    },
+    jshint: {
+            camelcase: true,
+            curly: true,
+            eqeqeq: true,
+            strict: true,
+            indent: 4,
+            latedef: true,
+            unused: true,
+            node: true,
+            browser: true
+            
+    },
+    loaders: [
+        { test: /\.jsx$/, loader: 'jsx-loader'}
+    ]
 };

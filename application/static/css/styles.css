@@ -94,6 +94,12 @@ ul {
     font-weight: bold;
 }
 
+.todo-container .todo-list .empty-list {
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    color: #333333;
+}
 .todo-container .todo-list .todo-item {
     line-height: 50px;
     padding-left: 20px;

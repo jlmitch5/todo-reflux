@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react');
 
 var TodoList = require('jsx!./todo_list.jsx');
