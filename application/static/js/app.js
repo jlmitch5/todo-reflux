@@ -434,6 +434,7 @@
 	    submitTodo: function (event) {
 	        var todoTitle = this.refs.todo.getDOMNode().value.trim();
 	        TodoActions.addItem(todoTitle);
+	        this.refs.todo.getDOMNode().value = '';
 	        event.preventDefault();
 	    },
 	    render: function () {
@@ -8613,18 +8614,22 @@
 	        });
 	        return (
 	            React.createElement("li", {className: "todo-item", key: this.props.todo.key}, 
-	                React.createElement("input", {type: "checkbox", 
-	                       id: this.props.todo.key, 
-	                       name: this.props.todo.key, 
-	                       checked: this.state.checked || this.props.todo.isChecked, 
-	                       onChange: this.handleChange, 
-	                       onClick: this.completeTodo}), 
+	                React.createElement("div", null, 
+	                    React.createElement("input", {type: "checkbox", 
+	                           id: this.props.todo.key, 
+	                           name: this.props.todo.key, 
+	                           checked: this.state.checked || this.props.todo.isChecked, 
+	                           onChange: this.handleChange, 
+	                           onClick: this.completeTodo}), 
 
-	                React.createElement("label", {htmlFor: this.props.todo.key, className: labelClasses}), 
-	                React.createElement("p", {className: 'text ' + cls}, 
-	                    this.props.todo.title
-	                ), 
-	                React.createElement("span", {className: "icon-trash", onClick: this.removeTodo})
+	                    React.createElement("label", {htmlFor: this.props.todo.key, className: labelClasses}), 
+	                    React.createElement("p", {className: 'text ' + cls}, 
+	                        this.props.todo.title
+	                    )
+	                    ), 
+	                React.createElement("div", {className: "trash-icon"}, 
+	                    React.createElement("span", {className: "icon-trash", onClick: this.removeTodo})
+	                )
 	            )
 	        );        
 	    }

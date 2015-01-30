@@ -7,6 +7,7 @@ var TodoAddForm = React.createClass({
     submitTodo: function (event) {
         var todoTitle = this.refs.todo.getDOMNode().value.trim();
         TodoActions.addItem(todoTitle);
+        this.refs.todo.getDOMNode().value = '';
         event.preventDefault();
     },
     render: function () {

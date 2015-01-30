@@ -26,18 +26,22 @@ var TodoItem = React.createClass({
         });
         return (
             <li className="todo-item" key={this.props.todo.key}>
-                <input type="checkbox" 
-                       id={this.props.todo.key} 
-                       name={this.props.todo.key} 
-                       checked={this.state.checked || this.props.todo.isChecked}
-                       onChange={this.handleChange}
-                       onClick={this.completeTodo} /> 
+                <div>
+                    <input type="checkbox" 
+                           id={this.props.todo.key} 
+                           name={this.props.todo.key} 
+                           checked={this.state.checked || this.props.todo.isChecked}
+                           onChange={this.handleChange}
+                           onClick={this.completeTodo} /> 
 
-                <label htmlFor={this.props.todo.key} className={labelClasses}></label>
-                <p className={'text ' + cls}>
-                    {this.props.todo.title}
-                </p>
-                <span className="icon-trash" onClick={this.removeTodo}></span>
+                    <label htmlFor={this.props.todo.key} className={labelClasses}></label>
+                    <p className={'text ' + cls}>
+                        {this.props.todo.title}
+                    </p>
+                    </div>
+                <div className="trash-icon">
+                    <span className="icon-trash" onClick={this.removeTodo}></span>
+                </div>
             </li>
         );        
     }
