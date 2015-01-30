@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react/addons');
+var Bounce = require('bounce.js/bounce.js');
 
 var TodoActions = require('./todo_actions.js');
 

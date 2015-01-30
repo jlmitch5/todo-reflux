@@ -16,6 +16,7 @@
   "author": "Henrik Andersson",
   "license": "MIT",
   "devDependencies": {
+    "bounce.js": "^0.8.1",
     "jest": "^0.1.37",
     "jshint": "^2.6.0",
     "jshint-loader": "^0.8.1",
