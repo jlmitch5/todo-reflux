@@ -5,6 +5,21 @@ module.exports = {
         filename: 'app.js'
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.js|\.jsx$/,
+                exclude: /node_modules/,
+                loader: "jsxhint-loader"
+            }    
+        ],
+        jshint:  {
+            camelCase: true,
+            emitErrors: true,
+            failOnHint: false
+        },
+        jsxhint: {
+            camelCase: true
+        },
         loaders: [
                 { test: /\.jsx$/, loader: 'jsx-loader'}
             ]

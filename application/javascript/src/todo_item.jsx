@@ -4,7 +4,7 @@ var TodoActions = require('./todo_actions.js');
 
 var TodoItem = React.createClass({
     getInitialState: function () {
-        return {checked: false};;
+        return {checked: false};
     },
     handleChange: function () {
         this.setState({checked: !this.props.todo.isChecked});
