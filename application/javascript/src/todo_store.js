@@ -40,7 +40,11 @@ var TodoListStore = Reflux.createStore({
         this.updateList(this.list);
     },
     onCompleteAll: function () {
-        console.log("completed all");               
+        var list = this.list;
+        list.forEach(function (item) {
+            item.isChecked = true;
+        });
+        this.updateList(list);
     },
     onAddItem: function (item) {
         this.updateList([{

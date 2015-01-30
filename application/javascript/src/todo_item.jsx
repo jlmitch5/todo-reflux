@@ -3,6 +3,12 @@ var React = require('react/addons');
 var TodoActions = require('./todo_actions.js');
 
 var TodoItem = React.createClass({
+    getInitialState: function () {
+        return {checked: false};;
+    },
+    handleChange: function () {
+        this.setState({checked: !this.props.todo.isChecked});
+    },
     completeTodo: function () {
         TodoActions.completeItem(this.props.todo.key);
     },
@@ -19,7 +25,8 @@ var TodoItem = React.createClass({
                 <input type="checkbox" 
                        id={this.props.todo.key} 
                        name={this.props.todo.key} 
-                       defaultChecked={this.props.todo.isChecked}
+                       checked={this.state.checked || this.props.todo.isChecked}
+                       onChange={this.handleChange}
                        onClick={this.completeTodo} /> 
 
                 <label htmlFor={this.props.todo.key} className={labelClasses}></label>

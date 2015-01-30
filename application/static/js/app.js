@@ -19015,6 +19015,12 @@
 	var TodoActions = __webpack_require__(169);
 
 	var TodoItem = React.createClass({displayName: "TodoItem",
+	    getInitialState: function () {
+	        return {checked: false};;
+	    },
+	    handleChange: function () {
+	        this.setState({checked: !this.props.todo.isChecked});
+	    },
 	    completeTodo: function () {
 	        TodoActions.completeItem(this.props.todo.key);
 	    },
@@ -19031,7 +19037,8 @@
 	                React.createElement("input", {type: "checkbox", 
 	                       id: this.props.todo.key, 
 	                       name: this.props.todo.key, 
-	                       defaultChecked: this.props.todo.isChecked, 
+	                       checked: this.state.checked || this.props.todo.isChecked, 
+	                       onChange: this.handleChange, 
 	                       onClick: this.completeTodo}), 
 
 	                React.createElement("label", {htmlFor: this.props.todo.key, className: labelClasses}), 
@@ -22332,7 +22339,11 @@
 	        this.updateList(this.list);
 	    },
 	    onCompleteAll: function () {
-	        console.log("completed all");               
+	        var list = this.list;
+	        list.forEach(function (item) {
+	            item.isChecked = true;
+	        });
+	        this.updateList(list);
 	    },
 	    onAddItem: function (item) {
 	        this.updateList([{
