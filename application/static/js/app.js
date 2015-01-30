@@ -63,10 +63,10 @@
 	var TodoStore = __webpack_require__(192);
 
 	var App = React.createClass({displayName: "App",
-	    mixins: [Reflux.connect(TodoStore, "list", "todoCounter")],
+	    mixins: [Reflux.connect(TodoStore, "list")],
 	    render: function () {
 	        return (
-	            React.createElement(TodoContainer, {todos: this.state.list, counter: this.state.todoCounter})
+	            React.createElement(TodoContainer, {todos: this.state.list})
 	        );
 	    }
 	});
@@ -18947,7 +18947,7 @@
 	                    React.createElement(TodoList, {todos: this.props.todos})
 	                ), 
 	                React.createElement("div", {className: "todo-footer"}, 
-	                    React.createElement(TodoFooter, {counter: this.props.counter})
+	                    React.createElement(TodoFooter, {todos: this.props.todos})
 	                )
 	            )    
 	        );        
@@ -18970,7 +18970,7 @@
 	var TodoList = React.createClass({displayName: "TodoList",
 	    render: function () {
 	        var items = this.props.todos.map(function(item, index) {
-	            return React.createElement(TodoItem, {todo: item})
+	            return React.createElement(TodoItem, {todo: item, key: item.key})
 	        });
 	        return (React.createElement("ul", null, items));        
 	    }
@@ -22298,7 +22298,7 @@
 	var TodoListStore = Reflux.createStore({
 	    listenables: [TodoActions],
 	    getInitialState: function () {
-	        this.todoCounter = 4;
+	        this.todoCounter = 5;
 	        this.list = [
 	            {
 	                title: "Discuss report with John",
@@ -22343,7 +22343,7 @@
 	    },
 	    updateList: function (list) {
 	        this.list = list;
-	        this.trigger(list, this.todoCounter);
+	        this.trigger(list);
 	    }
 	});
 
@@ -22368,7 +22368,7 @@
 	    render: function () {
 	        return (
 	            React.createElement("ul", null, 
-	                React.createElement("li", {className: "todos-left"}, React.createElement(TodoCounter, {counter: this.props.counter})), 
+	                React.createElement("li", {className: "todos-left"}, React.createElement(TodoCounter, {todos: this.props.todos})), 
 	                React.createElement("li", {className: "clear-all"}, React.createElement("a", {onClick: this.markAllCompleted}, "Mark all as complete"))
 	            )
 	        );        
@@ -22383,11 +22383,21 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(2);
+	var _ = __webpack_require__(195);
 
 	var TodoCounter = React.createClass({displayName: "TodoCounter",
 	    render: function () {
+	        var text;
+	        var count = _.filter(this.props.todos, function (item) {
+	            return !item.isChecked;
+	        }).length;
+	        if (!count) {
+	            text = "You've completed everything today!";
+	        } else {
+	            text = "" + count + " items left";
+	        }
 	        return (
-	            React.createElement("span", null, this.props.counter, " items left")    
+	            React.createElement("span", null, text)
 	        );
 	    }
 	});

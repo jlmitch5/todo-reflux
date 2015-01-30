@@ -6,7 +6,7 @@ var TodoActions = require('./todo_actions.js');
 var TodoListStore = Reflux.createStore({
     listenables: [TodoActions],
     getInitialState: function () {
-        this.todoCounter = 4;
+        this.todoCounter = 5;
         this.list = [
             {
                 title: "Discuss report with John",
@@ -51,7 +51,7 @@ var TodoListStore = Reflux.createStore({
     },
     updateList: function (list) {
         this.list = list;
-        this.trigger(list, this.todoCounter);
+        this.trigger(list);
     }
 });
 
