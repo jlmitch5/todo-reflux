@@ -177,6 +177,12 @@
 	            key: this.todoCounter++
 	        }].concat(this.list));
 	    },
+	    onRemoveItem: function (key) {
+	        var list = _.reject(this.list, function (item) {
+	            return item.key === key;
+	        });        
+	        this.updateList(list);
+	    },
 	    updateList: function (list) {
 	        this.list = list;
 	        this.trigger(list);
@@ -469,7 +475,8 @@
 	var TodoActions = Reflux.createActions([
 	    "completeItem",     //called when ticking checkbox
 	    "addItem",          //called when clicking Add todo button
-	    "completeAll"          //called when clicking link in footer
+	    "removeItem",       //called when click the Trash icon
+	    "completeAll"       //called when clicking link in footer
 	]);
 
 
@@ -8489,6 +8496,9 @@
 	    completeTodo: function () {
 	        TodoActions.completeItem(this.props.todo.key);
 	    },
+	    removeTodo: function () {
+	        TodoActions.removeItem(this.props.todo.key);            
+	    },
 	    render: function () {
 	        var cx = React.addons.classSet;
 	        var cls = cx({
@@ -8509,7 +8519,8 @@
 	                React.createElement("label", {htmlFor: this.props.todo.key, className: labelClasses}), 
 	                React.createElement("p", {className: 'text ' + cls}, 
 	                    this.props.todo.title
-	                )
+	                ), 
+	                React.createElement("span", {className: "icon-trash", onClick: this.removeTodo})
 	            )
 	        );        
 	    }

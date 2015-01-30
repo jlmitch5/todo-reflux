@@ -12,6 +12,9 @@ var TodoItem = React.createClass({
     completeTodo: function () {
         TodoActions.completeItem(this.props.todo.key);
     },
+    removeTodo: function () {
+        TodoActions.removeItem(this.props.todo.key);            
+    },
     render: function () {
         var cx = React.addons.classSet;
         var cls = cx({
@@ -33,6 +36,7 @@ var TodoItem = React.createClass({
                 <p className={'text ' + cls}>
                     {this.props.todo.title}
                 </p>
+                <span className="icon-trash" onClick={this.removeTodo}></span>
             </li>
         );        
     }

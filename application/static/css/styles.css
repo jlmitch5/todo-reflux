@@ -200,3 +200,10 @@ ul {
     font-size: 10px;
     display: inline-block;
 }
+
+.icon-trash:before { 
+    color: #333333;
+    font-size: 10px;
+    content: '\e801'; 
+}
+
