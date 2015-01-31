@@ -11,10 +11,10 @@ var TodoItem = React.createClass({
         this.setState({checked: !this.props.todo.isChecked});
     },
     completeTodo: function () {
-        TodoActions.completeItem(this.props.todo.key);
+        TodoActions.completeTodo(this.props.todo.key);
     },
     removeTodo: function () {
-        TodoActions.removeItem(this.props.todo.key);            
+        TodoActions.removeTodo(this.props.todo.key);            
     },
     render: function () {
         var cx = React.addons.classSet;
