@@ -11,8 +11,10 @@
   },
   "jest": {
     "testDirectoryName": "tests",
-    "scriptPreprocessor": "tests/preprocessor.js",
-    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"]
+    "scriptPreprocessor": "tests/helpers/preprocessor.js",
+    "setupTestFrameworkScriptFile": "tests/helpers/framework_script_file.js",
+    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"],
+    "testPathIgnorePatterns": ["/node_modules/","/tests/helpers/"]
   },
   "repository": {
     "type": "git",

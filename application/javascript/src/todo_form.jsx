@@ -3,12 +3,13 @@ var React = require('react');
 
 var TodoActions = require('./todo_actions.js');
 
-var TodoAddForm = React.createClass({
+var TodoForm = React.createClass({
     getInitialState: function () {
         return {showWarning: false};
     },
     submitTodo: function (event) {
-        if (this.refs.todo.getDOMNode().value !== '') {
+        event.preventDefault();
+        if (this.refs.todo.getDOMNode().value) {
             var todoTitle = this.refs.todo.getDOMNode().value.trim();
             TodoActions.addItem(todoTitle);
             this.refs.todo.getDOMNode().value = '';
@@ -16,7 +17,6 @@ var TodoAddForm = React.createClass({
         } else {
             this.warnForEmptyField();
         }
-        event.preventDefault();
     },
     warnForEmptyField: function () {
         this.setState({showWarning: true});
@@ -24,17 +24,18 @@ var TodoAddForm = React.createClass({
     render: function () {
         var cx = React.addons.classSet;
         var cls = cx({
-            show: !this.state.showWarning,
+            tooltip: true,
+            show: this.state.showWarning,
             'animation-target': this.state.showWarning
         });
         return (
             <form onSubmit={this.submitTodo}>
                 <input className="input" type="text" placeholder="What needs to be done" ref="todo" />
                 <input className="button" type="submit" value="Add Todo" />
-                <div className={"tooltip " + cls}>please write something</div>
+                <div className={cls}>please write something</div>
             </form>
         );        
     }
 });
 
-module.exports = TodoAddForm;
+module.exports = TodoForm;
