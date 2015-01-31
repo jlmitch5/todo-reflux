@@ -22,7 +22,7 @@ var TodoListStore = Reflux.createStore({
             this.trigger(this.list);
         }.bind(this));
     },
-    onCompleteItem: function (key) {
+    onCompleteTodo: function (key) {
         var todoItem = _.find(this.list, function (item) {
             return item.key === key;
         });
@@ -36,14 +36,14 @@ var TodoListStore = Reflux.createStore({
         });
         this.updateList(list);
     },
-    onAddItem: function (item) {
+    onAddTodo: function (item) {
         this.updateList([{
             title: item,
             isChecked: false,
             key: this.todoCounter++
         }].concat(this.list));
     },
-    onRemoveItem: function (key) {
+    onRemoveTodo: function (key) {
         var list = _.reject(this.list, function (item) {
             return item.key === key;
         });        
