@@ -1,5 +1,11 @@
 .form {
-    padding: 21px 20px;
+
+    form {
+        padding: 21px 20px;
+        input, button {
+            padding: 0;
+        }
+    }
 
     .input {
         background-color: #fefefe;
@@ -10,12 +16,12 @@
         border: 1px solid @solid-border-color;
         box-sizing: border-box;
         .border-radius();
+        font-size: 1.4rem;
     }
 
     .button {
         width: 145px;
         height: 40px;
-        padding-top: 5px;
         border: 1px solid #999;
         box-sizing: border-box; 
         .border-radius();
@@ -32,6 +38,8 @@
         .box-shadow-inset(0px, 1px, 1px, 0px, rgba(255, 255, 255, 1));
         text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
         color: #6a6969;
+        font-size: 1.4rem;
+        font-weight: bold;
     }
 
     .tooltip {
