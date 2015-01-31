@@ -2,9 +2,9 @@
 var React = require('react');
 
 var TodoActions = require('./todo_actions.js');
-var TodoList = require('jsx!./todo_list.jsx');
-var TodoForm = require('jsx!./todo_form.jsx');
-var TodoFooter = require('jsx!./todo_footer.jsx');
+var TodoList = require('./todo_list.jsx');
+var TodoForm = require('./todo_form.jsx');
+var TodoFooter = require('./todo_footer.jsx');
 
 
 var TodoContainer = React.createClass({

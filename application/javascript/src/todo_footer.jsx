@@ -3,7 +3,7 @@ var React = require('react');
 
 var TodoActions = require('./todo_actions.js');
 
-var TodoCounter = require('jsx!./todo_counter.jsx');
+var TodoCounter = require('./todo_counter.jsx');
 
 var TodoFooter = React.createClass({
     markAllCompleted: function () {
