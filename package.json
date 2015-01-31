@@ -24,6 +24,7 @@
     "jsxhint-loader": "^0.2.0",
     "react": "^0.12.2",
     "reflux": "^0.2.4",
+    "superagent": "^0.21.0",
     "underscore": "^1.7.0",
     "webpack": "^1.5.3"
   }
