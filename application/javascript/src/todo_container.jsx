@@ -1,12 +1,16 @@
 'use strict';
 var React = require('react');
 
+var TodoActions = require('./todo_actions.js');
 var TodoList = require('jsx!./todo_list.jsx');
 var TodoAddForm = require('jsx!./todo_add_form.jsx');
 var TodoFooter = require('jsx!./todo_footer.jsx');
 
 
 var TodoContainer = React.createClass({
+    componentDidMount: function () {
+        TodoActions.load();
+    },
     render: function () {
         return (
             <div className="todo-container">
