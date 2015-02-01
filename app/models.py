@@ -1,7 +1,7 @@
 from app import db, managers
 
 class Todo(db.Model, managers.ModelManager):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(255), index=True, unique=False)
     is_completed = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime)

@@ -47,6 +47,9 @@ var TodoListStore = Reflux.createStore({
         var list = _.reject(this.list, function (item) {
             return item.key === key;
         });        
+        if (_.isEmpty(list)) {
+            this.todoCounter = 1;
+        }
         this.updateList(list);
     },
     updateList: function (list) {
