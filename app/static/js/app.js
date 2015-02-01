@@ -406,9 +406,15 @@
 
 
 	TodoActions.addTodo.preEmit = function (todo) {
-	    request.post('/todos/', {todo: todo}, function () {
-	        TodoActions.addTodo(todo);
-	    });    
+	    request.post('/todos/', {todo: todo}, function () {});
+	};
+
+	TodoActions.removeTodo.preEmit = function (id) {
+	    request.del('/todos/'+id+'/', function () {});
+	};
+
+	TodoActions.completeAll.preEmit = function(todo) {
+	    request.put('/todos/'+todo.key+'/', {todo: todo}, function () {});
 	};
 
 	module.exports = TodoActions;
