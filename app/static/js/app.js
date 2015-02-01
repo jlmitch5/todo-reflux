@@ -431,7 +431,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var React = __webpack_require__(2);
+	var React = __webpack_require__(112);
+	var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 	var TodoItem = __webpack_require__(37);
 
@@ -442,7 +443,11 @@
 	        });
 
 	        if (items.length) {
-	            return (React.createElement("ul", null, items));
+	            return (React.createElement("ul", null, 
+	                React.createElement(ReactCSSTransitionGroup, {transitionName: "jelly"}, 
+	                items
+	                )
+	            ));
 	        } else {
 	            return (React.createElement("div", {className: "empty-list"}, "There is nothing here! Why dont you add something?"));
 	        }
@@ -483,8 +488,7 @@
 	        var cx = React.addons.classSet;
 	        var cls = cx({
 	            tooltip: true,
-	            show: this.state.showWarning,
-	            'animation-target': this.state.showWarning
+	            show: this.state.showWarning
 	        });
 	        return (
 	            React.createElement("form", {onSubmit: this.submitTodo}, 

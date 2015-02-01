@@ -25,8 +25,7 @@ var TodoForm = React.createClass({
         var cx = React.addons.classSet;
         var cls = cx({
             tooltip: true,
-            show: this.state.showWarning,
-            'animation-target': this.state.showWarning
+            show: this.state.showWarning
         });
         return (
             <form onSubmit={this.submitTodo}>
