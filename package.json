@@ -13,8 +13,14 @@
     "testDirectoryName": "tests",
     "scriptPreprocessor": "tests/helpers/preprocessor.js",
     "setupTestFrameworkScriptFile": "tests/helpers/framework_script_file.js",
-    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"],
-    "testPathIgnorePatterns": ["/node_modules/","/tests/helpers/"]
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/superagent"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/helpers/"
+    ]
   },
   "repository": {
     "type": "git",
