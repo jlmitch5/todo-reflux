@@ -164,6 +164,7 @@ ul {
   text-align: center;
   padding: 20px;
   color: #333333;
+  font-size: 1.4rem;
 }
 .container .todo-list ul {
   padding: 0;

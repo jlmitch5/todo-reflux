@@ -413,8 +413,12 @@
 	    request.del('/todos/'+id+'/', function () {});
 	};
 
+	TodoActions.completeTodo.preEmit = function (id) {
+	    request.put('/todos/'+id+'/', function () {});
+	};
+
 	TodoActions.completeAll.preEmit = function(todo) {
-	    request.put('/todos/'+todo.key+'/', {todo: todo}, function () {});
+	    request.put('/todos/check-all/', function () {});
 	};
 
 	module.exports = TodoActions;

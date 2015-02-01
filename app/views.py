@@ -27,8 +27,9 @@ def todos(todo_id):
 
     if request.method == 'PUT' and todo_id:
         todo = Todo.query.get(todo_id)
-        todo = todo.update(request.json.get('todo'))
+        todo.is_completed = not todo.is_completed
         todo.save()
+        return Response('', status=204, mimetype='application/json')
     else:
         todos = Todo.query.order_by(desc(Todo.created_at))
         todos_as_json = []
@@ -41,3 +42,12 @@ def todos(todo_id):
                     'key': todo.id
                 })
         return jsonify(todos=todos_as_json)
+
+@app.route('/todos/check-all/', methods=['PUT'])
+def check_todos():
+    todos = Todo.query.all()
+    for todo in todos:
+        todo.is_completed = True
+        todo.save()
+    return Response("ok", status=200, mimetype='application/json')
+
