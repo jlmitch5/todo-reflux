@@ -1,4 +1,6 @@
+'use strict';
 var Reflux = require('reflux');
+var request = require('superagent');
 
 var TodoActions = Reflux.createActions([
     "load",             //called when entering the page
@@ -8,5 +10,11 @@ var TodoActions = Reflux.createActions([
     "completeAll"       //called when clicking link in footer
 ]);
 
+
+TodoActions.addTodo.preEmit = function (todo) {
+    request.post('/todos/', {todo: todo}, function () {
+        TodoActions.addTodo(todo);
+    });    
+};
 
 module.exports = TodoActions;

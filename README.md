@@ -1,3 +1,6 @@
+Create db with `python create_db.py`
+Run app with `python runserver.py`
+
 Run tests with npm test
-Compile less with `lessc application/less/styles.less application/static/css/styles.css`
+Compile less with `lessc app/less/styles.less app/static/css/styles.css`
 

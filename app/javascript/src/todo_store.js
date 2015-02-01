@@ -36,9 +36,9 @@ var TodoListStore = Reflux.createStore({
         });
         this.updateList(list);
     },
-    onAddTodo: function (item) {
+    onAddTodo: function (todo) {
         this.updateList([{
-            title: item,
+            title: todo,
             isChecked: false,
             key: this.todoCounter++
         }].concat(this.list));

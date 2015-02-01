@@ -1,5 +1,6 @@
 *.DS_STORE
 *.pyc
 *.swp
+*.db
 node_modules/
 application/static/
