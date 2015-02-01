@@ -1,11 +1,11 @@
-jest.dontMock('../application/javascript/src/todo_list.jsx');
-jest.dontMock('../application/javascript/src/todo_item.jsx');
+jest.dontMock('../app/javascript/src/todo_list.jsx');
+jest.dontMock('../app/javascript/src/todo_item.jsx');
 
 describe('TodoList', function () {
     
     var React = require('react/addons');
     var TestUtils = React.addons.TestUtils;
-    var TodoList = require('../application/javascript/src/todo_list.jsx');
+    var TodoList = require('../app/javascript/src/todo_list.jsx');
 
     describe('renders', function () {
         

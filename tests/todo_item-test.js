@@ -1,16 +1,16 @@
-jest.dontMock('../application/javascript/src/todo_item.jsx');
+jest.dontMock('../app/javascript/src/todo_item.jsx');
 
 describe('Todo Item', function () {
     var React = require('react/addons');
     var TestUtils = React.addons.TestUtils;
 
-    jest.setMock('../application/javascript/src/todo_actions.js', {
+    jest.setMock('../app/javascript/src/todo_actions.js', {
         completeTodo: jest.genMockFn(),
         removeTodo: jest.genMockFn()
     });
 
-    var TodoActions = require('../application/javascript/src/todo_actions.js');
-    var TodoItem = require('../application/javascript/src/todo_item.jsx');
+    var TodoActions = require('../app/javascript/src/todo_actions.js');
+    var TodoItem = require('../app/javascript/src/todo_item.jsx');
 
     var todoData = {
         key: 1,
