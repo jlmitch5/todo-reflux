@@ -406,7 +406,9 @@
 
 
 	TodoActions.addTodo.preEmit = function (todo) {
-	    request.post('/todos/', {todo: todo}, function () {});
+	    request.post('/todos/', {todo: todo}, function () {
+	        TodoActions.addTodo(todo);
+	    });
 	};
 
 	TodoActions.removeTodo.preEmit = function (id) {
@@ -417,7 +419,7 @@
 	    request.put('/todos/'+id+'/', function () {});
 	};
 
-	TodoActions.completeAll.preEmit = function(todo) {
+	TodoActions.completeAll.preEmit = function() {
 	    request.put('/todos/check-all/', function () {});
 	};
 
