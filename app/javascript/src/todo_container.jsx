@@ -13,7 +13,7 @@ var TodoContainer = React.createClass({
     },
     render: function () {
         return (
-            <div className="pure-g-r container">
+            <div className="pure-g container">
                 <div className="pure-u-1 headline">
                     <h1>Todos</h1>
                 </div>

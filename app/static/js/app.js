@@ -103,7 +103,7 @@
 	    },
 	    render: function () {
 	        return (
-	            React.createElement("div", {className: "pure-g-r container"}, 
+	            React.createElement("div", {className: "pure-g container"}, 
 	                React.createElement("div", {className: "pure-u-1 headline"}, 
 	                    React.createElement("h1", null, "Todos")
 	                ), 
@@ -134,6 +134,7 @@
 	var _ = __webpack_require__(36);
 	var request = __webpack_require__(41);
 
+	var Todo = __webpack_require__(199);
 	var TodoActions = __webpack_require__(7);
 
 	var TodoListStore = Reflux.createStore({
@@ -147,7 +148,10 @@
 	    },
 	    fetchData: function () {
 	        request.get('/todos/', function (res) {
-	            this.list = JSON.parse(res.text).todos;
+	            var response = JSON.parse(res.text).todos;
+	            this.list = response.map(function (todo) {
+	                return new Todo(todo.key, todo.title, todo.isChecked, todo.createdAt);
+	            });
 	            this.todoCounter = this.list.length + 1;
 	            this.trigger(this.list);
 	        }.bind(this));
@@ -442,6 +446,9 @@
 	var TodoItem = __webpack_require__(38);
 
 	var TodoList = React.createClass({displayName: "TodoList",
+	    propTypes: {
+	        todos: React.PropTypes.array           
+	    },
 	    render: function () {
 	        if (this.props.todos.length) {
 	            var items = this.props.todos.map(function(item) {
@@ -502,8 +509,8 @@
 	        });
 	        return (
 	            React.createElement("form", {onSubmit: this.submitTodo}, 
-	                React.createElement("input", {className: "input", type: "text", placeholder: "What needs to be done", ref: "todo"}), 
-	                React.createElement("input", {className: "button", type: "submit", value: "Add Todo"}), 
+	                React.createElement("input", {className: "input pure-u-1 pure-u-sm-2-3 pure-u-lg-2-3", type: "text", placeholder: "What needs to be done", ref: "todo"}), 
+	                React.createElement("input", {className: "button pure-u-1 pure-u-sm-1-3 pure-u-lg-1-3", type: "submit", value: "Add Todo"}), 
 	                React.createElement("div", {className: cls}, "please write something")
 	            )
 	        );        
@@ -8553,9 +8560,13 @@
 	'use strict';
 	var React = __webpack_require__(37);
 
+	var Todo = __webpack_require__(199);
 	var TodoActions = __webpack_require__(7);
 
 	var TodoItem = React.createClass({displayName: "TodoItem",
+	    propTypes: {
+	        todo: React.PropTypes.instanceOf(Todo).isRequired
+	    },
 	    getInitialState: function () {
 	        return {
 	            checked: false
@@ -8614,6 +8625,9 @@
 	var _ = __webpack_require__(36);
 
 	var TodoCounter = React.createClass({displayName: "TodoCounter",
+	    propTypes: {
+	        todos: React.PropTypes.array.isRequired           
+	    },
 	    render: function () {
 	        var text;
 	        var count = _.filter(this.props.todos, function (item) {
@@ -25205,6 +25219,22 @@
 	module.exports = toArray;
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(40)))
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var Todo = function (key, title, isChecked, createdAt) {
+	    this.key = key;
+	    this.title = title;
+	    this.isChecked = isChecked;
+	    this.createdAt = createdAt;
+	};
+
+	module.exports = Todo;
+
 
 /***/ }
 /******/ ])

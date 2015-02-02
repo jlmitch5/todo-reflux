@@ -3,6 +3,7 @@ var Reflux = require('reflux');
 var _ = require('underscore');
 var request = require('superagent');
 
+var Todo = require('./todo.js');
 var TodoActions = require('./todo_actions.js');
 
 var TodoListStore = Reflux.createStore({
@@ -16,7 +17,10 @@ var TodoListStore = Reflux.createStore({
     },
     fetchData: function () {
         request.get('/todos/', function (res) {
-            this.list = JSON.parse(res.text).todos;
+            var response = JSON.parse(res.text).todos;
+            this.list = response.map(function (todo) {
+                return new Todo(todo.key, todo.title, todo.isChecked, todo.createdAt);
+            });
             this.todoCounter = this.list.length + 1;
             this.trigger(this.list);
         }.bind(this));

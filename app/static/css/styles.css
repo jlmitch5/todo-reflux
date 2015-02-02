@@ -95,12 +95,13 @@ ul {
 }
 .container {
   background-color: #fff;
-  width: 502px;
+  max-width: 502px;
   margin: 0 auto;
   margin-top: 95px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  box-sizing: border-box;
   border: 1px solid #e4e4e4;
 }
 .container .headline {
@@ -117,13 +118,8 @@ ul {
 .form form {
   padding: 21px 20px;
 }
-.form form input,
-.form form button {
-  padding: 0;
-}
 .form .input {
   background-color: #fefefe;
-  width: 305px;
   height: 40px;
   margin-right: 10px;
   padding-left: 11px;
@@ -135,7 +131,6 @@ ul {
   font-size: 1.4rem;
 }
 .form .button {
-  width: 145px;
   height: 40px;
   border: 1px solid #999;
   box-sizing: border-box;

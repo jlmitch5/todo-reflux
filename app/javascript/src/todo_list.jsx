@@ -5,6 +5,9 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var TodoItem = require('./todo_item.jsx');
 
 var TodoList = React.createClass({
+    propTypes: {
+        todos: React.PropTypes.array           
+    },
     render: function () {
         if (this.props.todos.length) {
             var items = this.props.todos.map(function(item) {

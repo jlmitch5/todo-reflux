@@ -34,8 +34,8 @@ var TodoForm = React.createClass({
         });
         return (
             <form onSubmit={this.submitTodo}>
-                <input className="input" type="text" placeholder="What needs to be done" ref="todo" />
-                <input className="button" type="submit" value="Add Todo" />
+                <input className="input pure-u-1 pure-u-sm-2-3 pure-u-lg-2-3" type="text" placeholder="What needs to be done" ref="todo" />
+                <input className="button pure-u-1 pure-u-sm-1-3 pure-u-lg-1-3" type="submit" value="Add Todo" />
                 <div className={cls}>please write something</div>
             </form>
         );        

@@ -1,4 +1,5 @@
 jest.dontMock('../app/javascript/src/todo_item.jsx');
+jest.dontMock('../app/javascript/src/todo.js');
 
 describe('Todo Item', function () {
     var React = require('react/addons');
@@ -10,13 +11,15 @@ describe('Todo Item', function () {
     });
 
     var TodoActions = require('../app/javascript/src/todo_actions.js');
+    var Todo  = require('../app/javascript/src/todo.js');
     var TodoItem = require('../app/javascript/src/todo_item.jsx');
 
-    var todoData = {
-        key: 1,
-        isChecked: false,
-        title: 'Crazy baby talk'
-    };
+    var todo = new Todo(
+        1,
+        'Crazy baby talk',
+        false,
+        new Date()
+    );
 
     describe('renders', function () {
         var todoItem;
@@ -25,15 +28,15 @@ describe('Todo Item', function () {
         var p;
 
         it('unchecked', function () {
-            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todoData} />);
+            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
             input = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'input');
             expect(input.getDOMNode().checked).toBe(false);
         });
 
         it('checked', function () {
-            todoData.isChecked = true;
+            todo.isChecked = true;
 
-            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todoData} />);
+            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
             input = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'input');
             label = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'label');
             p = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'p');
@@ -44,7 +47,7 @@ describe('Todo Item', function () {
         });
 
         it('a title', function () {
-            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todoData} />);
+            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
             p = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'p');
 
             expect(p.getDOMNode().textContent).toBe('Crazy baby talk');
@@ -56,7 +59,7 @@ describe('Todo Item', function () {
         var input;
 
         it('checks itself when clicked', function () {
-            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todoData} />);
+            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
             input = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'input');
             p = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'p');
 
@@ -70,7 +73,7 @@ describe('Todo Item', function () {
         var todoItem;
 
         it('#completeTodo', function () {
-            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todoData} />);
+            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
             input = TestUtils.findRenderedDOMComponentWithTag(todoItem, 'input');
 
             TestUtils.Simulate.click(input.getDOMNode());
@@ -79,7 +82,7 @@ describe('Todo Item', function () {
         }); 
 
         it('#removeTodo', function () {
-            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todoData} />);
+            todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
             var trashIcon = TestUtils.findRenderedDOMComponentWithClass(todoItem, 'icon-trash');
 
             TestUtils.Simulate.click(trashIcon.getDOMNode());

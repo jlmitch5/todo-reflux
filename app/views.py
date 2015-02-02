@@ -38,7 +38,7 @@ def todos(todo_id):
             todos_as_json.append({
                     'title': todo.title,
                     'isChecked': todo.is_completed,
-                    'created_at': todo.created_at,
+                    'createdAt': todo.created_at,
                     'key': todo.id
                 })
         return jsonify(todos=todos_as_json)

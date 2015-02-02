@@ -15,3 +15,9 @@
        -moz-box-shadow: inset @top @left @bottom @right @color;
             box-shadow: inset @top @left @bottom @right @color;
 }
+
+.mobile-layout(@rules) {
+    @media screen and (max-width: 480px) {
+        @rules();
+    }
+}

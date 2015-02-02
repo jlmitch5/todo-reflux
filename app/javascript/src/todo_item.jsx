@@ -1,9 +1,13 @@
 'use strict';
 var React = require('react/addons');
 
+var Todo = require('./todo.js');
 var TodoActions = require('./todo_actions.js');
 
 var TodoItem = React.createClass({
+    propTypes: {
+        todo: React.PropTypes.instanceOf(Todo).isRequired
+    },
     getInitialState: function () {
         return {
             checked: false
