@@ -30,7 +30,7 @@ describe('Todo Form', function () {
         var tooltip = TestUtils.findRenderedDOMComponentWithClass(form, 'tooltip');
 
         expect(form.state.showWarning).toBe(true);
-        expect(tooltip.getDOMNode().textContent).toBe('please write something');
+        expect(tooltip.getDOMNode().textContent).toBe('You need to add a title x');
         expect(tooltip.props.className).toContain('show');
     });
 
