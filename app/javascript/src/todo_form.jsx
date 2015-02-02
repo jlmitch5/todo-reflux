@@ -5,13 +5,18 @@ var TodoActions = require('./todo_actions.js');
 
 var TodoForm = React.createClass({
     getInitialState: function () {
-        return {showWarning: false};
+        return {
+            showWarning: false
+        };
     },
     submitTodo: function (event) {
         event.preventDefault();
+
         if (this.refs.todo.getDOMNode().value) {
             var todoTitle = this.refs.todo.getDOMNode().value.trim();
+            
             TodoActions.addTodo(todoTitle);
+
             this.refs.todo.getDOMNode().value = '';
             this.setState({showWarning: false});
         } else {

@@ -10,7 +10,6 @@ var TodoActions = Reflux.createActions([
     "completeAll"       //called when clicking link in footer
 ]);
 
-
 TodoActions.addTodo.preEmit = function (todo) {
     request.post('/todos/', {todo: todo}, function () {
         TodoActions.addTodo(todo);

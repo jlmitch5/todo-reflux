@@ -8,11 +8,13 @@ var TodoCounter = React.createClass({
         var count = _.filter(this.props.todos, function (item) {
             return !item.isChecked;
         }).length;
+
         if (!count) {
             text = 'You\'ve completed everything today!';
         } else {
             text = '' + count + ' items left';
         }
+        
         return (
             <span>{text}</span>
         );

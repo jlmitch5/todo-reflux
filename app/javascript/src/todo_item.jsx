@@ -5,7 +5,9 @@ var TodoActions = require('./todo_actions.js');
 
 var TodoItem = React.createClass({
     getInitialState: function () {
-        return {checked: false};
+        return {
+            checked: false
+        };
     },
     handleChange: function () {
         this.setState({checked: !this.props.todo.isChecked});
@@ -24,6 +26,7 @@ var TodoItem = React.createClass({
         var labelClasses = cx({
             'icon-ok': this.props.todo.isChecked
         });
+
         return (
             <li className="todo-item" key={this.props.todo.key}>
                 <div>

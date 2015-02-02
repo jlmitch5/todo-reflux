@@ -134,7 +134,6 @@
 	var _ = __webpack_require__(36);
 	var request = __webpack_require__(41);
 
-
 	var TodoActions = __webpack_require__(7);
 
 	var TodoListStore = Reflux.createStore({
@@ -157,6 +156,7 @@
 	        var todoItem = _.find(this.list, function (item) {
 	            return item.key === key;
 	        });
+
 	        todoItem.isChecked = !todoItem.isChecked;
 	        this.updateList(this.list);
 	    },
@@ -165,6 +165,7 @@
 	        list.forEach(function (item) {
 	            item.isChecked = true;
 	        });
+
 	        this.updateList(list);
 	    },
 	    onAddTodo: function (todo) {
@@ -178,9 +179,11 @@
 	        var list = _.reject(this.list, function (item) {
 	            return item.key === key;
 	        });        
+
 	        if (_.isEmpty(list)) {
 	            this.todoCounter = 1;
 	        }
+
 	        this.updateList(list);
 	    },
 	    updateList: function (list) {
@@ -407,7 +410,6 @@
 	    "completeAll"       //called when clicking link in footer
 	]);
 
-
 	TodoActions.addTodo.preEmit = function (todo) {
 	    request.post('/todos/', {todo: todo}, function () {
 	        TodoActions.addTodo(todo);
@@ -445,6 +447,7 @@
 	            var items = this.props.todos.map(function(item) {
 	                return React.createElement(TodoItem, {todo: item, key: item.key});
 	            });
+
 	            return (React.createElement("ul", null, 
 	                React.createElement(ReactCSSTransitionGroup, {transitionName: "jelly"}, 
 	                items
@@ -470,13 +473,18 @@
 
 	var TodoForm = React.createClass({displayName: "TodoForm",
 	    getInitialState: function () {
-	        return {showWarning: false};
+	        return {
+	            showWarning: false
+	        };
 	    },
 	    submitTodo: function (event) {
 	        event.preventDefault();
+
 	        if (this.refs.todo.getDOMNode().value) {
 	            var todoTitle = this.refs.todo.getDOMNode().value.trim();
+	            
 	            TodoActions.addTodo(todoTitle);
+
 	            this.refs.todo.getDOMNode().value = '';
 	            this.setState({showWarning: false});
 	        } else {
@@ -513,7 +521,6 @@
 	var React = __webpack_require__(2);
 
 	var TodoActions = __webpack_require__(7);
-
 	var TodoCounter = __webpack_require__(39);
 
 	var TodoFooter = React.createClass({displayName: "TodoFooter",
@@ -523,8 +530,12 @@
 	    render: function () {
 	        return (
 	            React.createElement("ul", null, 
-	                React.createElement("li", {className: "todos-left"}, React.createElement(TodoCounter, {todos: this.props.todos})), 
-	                React.createElement("li", {className: "clear-all"}, React.createElement("a", {onClick: this.markAllCompleted}, "Mark all as complete"))
+	                React.createElement("li", {className: "todos-left"}, 
+	                    React.createElement(TodoCounter, {todos: this.props.todos})
+	                ), 
+	                React.createElement("li", {className: "clear-all"}, 
+	                    React.createElement("a", {onClick: this.markAllCompleted}, "Mark all as complete")
+	                )
 	            )
 	        );        
 	    }
@@ -8546,7 +8557,9 @@
 
 	var TodoItem = React.createClass({displayName: "TodoItem",
 	    getInitialState: function () {
-	        return {checked: false};
+	        return {
+	            checked: false
+	        };
 	    },
 	    handleChange: function () {
 	        this.setState({checked: !this.props.todo.isChecked});
@@ -8565,6 +8578,7 @@
 	        var labelClasses = cx({
 	            'icon-ok': this.props.todo.isChecked
 	        });
+
 	        return (
 	            React.createElement("li", {className: "todo-item", key: this.props.todo.key}, 
 	                React.createElement("div", null, 
@@ -8605,11 +8619,13 @@
 	        var count = _.filter(this.props.todos, function (item) {
 	            return !item.isChecked;
 	        }).length;
+
 	        if (!count) {
 	            text = 'You\'ve completed everything today!';
 	        } else {
 	            text = '' + count + ' items left';
 	        }
+	        
 	        return (
 	            React.createElement("span", null, text)
 	        );

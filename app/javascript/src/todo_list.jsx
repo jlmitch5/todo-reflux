@@ -10,6 +10,7 @@ var TodoList = React.createClass({
             var items = this.props.todos.map(function(item) {
                 return <TodoItem todo={item} key={item.key} />;
             });
+
             return (<ul>
                 <ReactCSSTransitionGroup transitionName="jelly">
                 {items}
