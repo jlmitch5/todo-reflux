@@ -8650,11 +8650,11 @@
 	    },
 	    getInitialState: function () {
 	        return {
-	            checked: false
+	            isChecked: false
 	        };
 	    },
 	    handleChange: function () {
-	        this.setState({checked: !this.props.todo.isChecked});
+	        this.setState({isChecked: !this.props.todo.isChecked});
 	    },
 	    completeTodo: function () {
 	        TodoActions.completeTodo(this.props.todo.key);
@@ -8664,7 +8664,7 @@
 	    },
 	    render: function () {
 	        var cx = React.addons.classSet;
-	        var cls = cx({
+	        var todoTitleClasses = cx({
 	            striked: this.props.todo.isChecked
 	        });
 	        var labelClasses = cx({
@@ -8677,12 +8677,12 @@
 	                    React.createElement("input", {type: "checkbox", 
 	                           id: this.props.todo.key, 
 	                           name: this.props.todo.key, 
-	                           checked: this.state.checked || this.props.todo.isChecked, 
+	                           checked: this.state.isChecked || this.props.todo.isChecked, 
 	                           onChange: this.handleChange, 
 	                           onClick: this.completeTodo}), 
 
 	                    React.createElement("label", {htmlFor: this.props.todo.key, className: labelClasses}), 
-	                    React.createElement("p", {className: 'text ' + cls}, 
+	                    React.createElement("p", {className: 'text ' + todoTitleClasses}, 
 	                        this.props.todo.title
 	                    )
 	                    ), 
