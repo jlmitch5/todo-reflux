@@ -42,11 +42,9 @@ var TodoListStore = Reflux.createStore({
         this.updateList(list);
     },
     onAddTodo: function (todo) {
-        this.updateList([{
-            title: todo,
-            isChecked: false,
-            key: this.todoCounter++
-        }].concat(this.list));
+        this.updateList([
+            new Todo(this.todoCounter++, todo, false, new Date())
+        ].concat(this.list));
     },
     onRemoveTodo: function (key) {
         var list = _.reject(this.list, function (item) {
