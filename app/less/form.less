@@ -7,6 +7,11 @@
     .input {
         background-color: #fefefe;
         height: 40px;
+        max-width: 305px;
+        .mobile-layout({
+            max-width: 100%;
+            margin-bottom: 10px;
+        });
         margin-right: 10px;
         padding-left: 11px;
         border: 1px solid @solid-border-color;
@@ -17,6 +22,11 @@
 
     .button {
         height: 40px;
+        max-width: 145px;
+        .mobile-layout({
+            max-width: 100%;
+            margin-bottom: 10px;
+        });
         border: 1px solid #999;
         box-sizing: border-box; 
         .border-radius();
