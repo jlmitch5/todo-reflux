@@ -6,7 +6,9 @@ var TodoList = require('./todo_list.jsx');
 var TodoForm = require('./todo_form.jsx');
 var TodoFooter = require('./todo_footer.jsx');
 
-
+/**
+ * TodoContainer renders all Todo-related components
+ */
 var TodoContainer = React.createClass({
     componentDidMount: function () {
         TodoActions.load();

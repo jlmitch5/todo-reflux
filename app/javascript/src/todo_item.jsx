@@ -4,6 +4,12 @@ var React = require('react/addons');
 var Todo = require('./todo.js');
 var TodoActions = require('./todo_actions.js');
 
+/**
+ * Represents one list item and triggers the following actions
+ *
+ * @completeTodo TodoActions#completeTodo->#onCompleteTodo
+ * @removeTodo TodoActions#removeTodo->onRemoveTodo
+ */
 var TodoItem = React.createClass({
     propTypes: {
         todo: React.PropTypes.instanceOf(Todo).isRequired

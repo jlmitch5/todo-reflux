@@ -6,6 +6,12 @@ var request = require('superagent');
 var Todo = require('./todo.js');
 var TodoActions = require('./todo_actions.js');
 
+/**
+ * Store handles all logic related to Todo Data.
+ * Such as adding, removing, and toggling of one or multiple Todos
+ *
+ * The store listens to actions triggered by TodoActions
+ */
 var TodoListStore = Reflux.createStore({
     listenables: [TodoActions],
     init: function () {
@@ -17,8 +23,8 @@ var TodoListStore = Reflux.createStore({
     },
     fetchData: function () {
         request.get('/todos/', function (res) {
-            var response = JSON.parse(res.text).todos;
-            this.list = response.map(function (todo) {
+            var todos = JSON.parse(res.text).todos;
+            this.list = todos.map(function (todo) {
                 return new Todo(todo.key, todo.title, todo.isChecked, todo.createdAt);
             });
             this.todoCounter = this.list.length + 1;
@@ -33,14 +39,6 @@ var TodoListStore = Reflux.createStore({
         todoItem.isChecked = !todoItem.isChecked;
         this.updateList(this.list);
     },
-    onCompleteAll: function () {
-        var list = this.list;
-        list.forEach(function (item) {
-            item.isChecked = true;
-        });
-
-        this.updateList(list);
-    },
     onAddTodo: function (todo) {
         this.updateList([
             new Todo(this.todoCounter++, todo, false, new Date())
@@ -49,11 +47,19 @@ var TodoListStore = Reflux.createStore({
     onRemoveTodo: function (key) {
         var list = _.reject(this.list, function (item) {
             return item.key === key;
-        });        
+        }); 
 
         if (_.isEmpty(list)) {
             this.todoCounter = 1;
         }
+
+        this.updateList(list);
+    },
+    onCompleteAll: function () {
+        var list = this.list;
+        list.forEach(function (item) {
+            item.isChecked = true;
+        });
 
         this.updateList(list);
     },

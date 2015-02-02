@@ -16,7 +16,7 @@ var TodoList = React.createClass({
 
             return (<ul>
                 <ReactCSSTransitionGroup transitionName="jelly">
-                {items}
+                    {items}
                 </ReactCSSTransitionGroup>
             </ul>);
         } else {

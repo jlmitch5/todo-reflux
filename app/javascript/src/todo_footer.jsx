@@ -4,6 +4,12 @@ var React = require('react');
 var TodoActions = require('./todo_actions.js');
 var TodoCounter = require('./todo_counter.jsx');
 
+/**
+ * Footer contains how many toods are left to complete and
+ * handles checking of all todos.
+ *
+ * @completeAll TodoActions#completeAll->onCompleteAll();
+ */
 var TodoFooter = React.createClass({
     markAllCompleted: function () {
         TodoActions.completeAll();                  
