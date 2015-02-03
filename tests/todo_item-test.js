@@ -14,12 +14,7 @@ describe('Todo Item', function () {
     var Todo  = require('../app/javascript/src/todo.js');
     var TodoItem = require('../app/javascript/src/todo_item.jsx');
 
-    var todo = new Todo(
-        1,
-        'Crazy baby talk',
-        false,
-        new Date()
-    );
+    var todo = new Todo(1, 'Crazy baby talk', false, new Date());
 
     describe('renders', function () {
         var todoItem;
@@ -71,6 +66,7 @@ describe('Todo Item', function () {
 
     describe('calls Action', function () {
         var todoItem;
+        var trashIcon;
 
         it('#completeTodo', function () {
             todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
@@ -83,7 +79,7 @@ describe('Todo Item', function () {
 
         it('#removeTodo', function () {
             todoItem = TestUtils.renderIntoDocument(<TodoItem todo={todo} />);
-            var trashIcon = TestUtils.findRenderedDOMComponentWithClass(todoItem, 'icon-trash');
+            trashIcon = TestUtils.findRenderedDOMComponentWithClass(todoItem, 'icon-trash');
 
             TestUtils.Simulate.click(trashIcon.getDOMNode());
 

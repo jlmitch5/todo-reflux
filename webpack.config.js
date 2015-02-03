@@ -14,16 +14,15 @@ module.exports = {
         ],
     },
     jshint: {
-            camelcase: true,
-            curly: true,
-            eqeqeq: true,
-            strict: true,
-            indent: 4,
-            latedef: true,
-            unused: true,
-            node: true,
-            browser: true
-            
+        camelcase: true,
+        curly: true,
+        eqeqeq: true,
+        strict: true,
+        indent: 4,
+        latedef: true,
+        unused: true,
+        node: true,
+        browser: true
     },
     loaders: [
         { test: /\.jsx$/, loader: 'jsx-loader'}

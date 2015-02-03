@@ -11,6 +11,7 @@ var TodoCounter = require('./todo_counter.jsx');
  * @completeAll TodoActions#completeAll->onCompleteAll();
  */
 var TodoFooter = React.createClass({
+    displayName: 'TodoFooter',
     markAllCompleted: function () {
         TodoActions.completeAll();                  
     },

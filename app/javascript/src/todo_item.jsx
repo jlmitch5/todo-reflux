@@ -11,6 +11,7 @@ var TodoActions = require('./todo_actions.js');
  * @removeTodo TodoActions#removeTodo->onRemoveTodo
  */
 var TodoItem = React.createClass({
+    displayName: 'TodoItem',
     propTypes: {
         todo: React.PropTypes.instanceOf(Todo).isRequired
     },
@@ -20,7 +21,9 @@ var TodoItem = React.createClass({
         };
     },
     handleChange: function () {
-        this.setState({isChecked: !this.props.todo.isChecked});
+        this.setState({
+            isChecked: !this.props.todo.isChecked
+        });
     },
     completeTodo: function () {
         TodoActions.completeTodo(this.props.todo.key);
@@ -30,9 +33,11 @@ var TodoItem = React.createClass({
     },
     render: function () {
         var cx = React.addons.classSet;
+
         var todoTitleClasses = cx({
             striked: this.props.todo.isChecked
         });
+
         var labelClasses = cx({
             'icon-ok': this.props.todo.isChecked
         });
