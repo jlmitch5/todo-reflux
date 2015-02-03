@@ -27,6 +27,7 @@ var TodoListStore = Reflux.createStore({
             this.list = todos.map(function (todo) {
                 return new Todo(todo.key, todo.title, todo.isChecked, todo.createdAt);
             });
+
             this.todoCounter = this.list.length + 1;
             this.trigger(this.list);
         }.bind(this));
@@ -77,4 +78,3 @@ var TodoListStore = Reflux.createStore({
 });
 
 module.exports = TodoListStore;
-
