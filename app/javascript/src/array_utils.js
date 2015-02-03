@@ -1,3 +1,4 @@
+'use strict';
 // http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
 module.exports = (function() {
 
@@ -10,5 +11,5 @@ module.exports = (function() {
         }
         this.splice(newIndex, 0, this.splice(oldIndex, 1)[0]);
         return this;
-    }
+    };
 })();
