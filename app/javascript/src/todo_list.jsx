@@ -3,10 +3,16 @@ var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var TodoItem = require('./todo_item.jsx');
+var Sorter = require('./sorter.js');
 
 var TodoList = React.createClass({
     propTypes: {
         todos: React.PropTypes.array           
+    },
+    componentDidMount: function () {
+        setTimeout(function () {
+            new Sorter().initialize(document.querySelectorAll('li.todo-item'));
+        }, 500);
     },
     render: function () {
         if (this.props.todos.length) {

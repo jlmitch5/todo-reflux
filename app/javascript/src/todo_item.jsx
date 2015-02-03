@@ -38,7 +38,7 @@ var TodoItem = React.createClass({
         });
 
         return (
-            <li className="todo-item" key={this.props.todo.key}>
+            <li className="todo-item" draggable="true" key={this.props.todo.key} data-id={this.props.todo.key} >
                 <div>
                     <input type="checkbox" 
                            id={this.props.todo.key} 
