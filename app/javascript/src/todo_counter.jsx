@@ -3,6 +3,7 @@ var React = require('react');
 var _ = require('underscore');
 
 var TodoCounter = React.createClass({
+    displayName: 'TodoCounter',
     propTypes: {
         todos: React.PropTypes.array.isRequired           
     },
