@@ -12,13 +12,15 @@ describe('Todo Form', function () {
     var TodoForm = require('../app/javascript/src/todo_form.jsx');
 
     var form;
+    var tooltip;
+    var input;
 
     beforeEach(function () {
         form = TestUtils.renderIntoDocument(<TodoForm />);
     });
     
     it('renders without displaying a warning', function () {
-        var tooltip = TestUtils.findRenderedDOMComponentWithClass(form, 'tooltip');
+        tooltip = TestUtils.findRenderedDOMComponentWithClass(form, 'tooltip');
 
         expect(form.state.showWarning).toBe(false);
         expect(tooltip.props.className).not.toContain('show');
@@ -27,7 +29,7 @@ describe('Todo Form', function () {
     it('displays warning when submitting witout a Todo', function () {
         TestUtils.Simulate.submit(form.getDOMNode());
 
-        var tooltip = TestUtils.findRenderedDOMComponentWithClass(form, 'tooltip');
+        tooltip = TestUtils.findRenderedDOMComponentWithClass(form, 'tooltip');
 
         expect(form.state.showWarning).toBe(true);
         expect(tooltip.getDOMNode().textContent).toBe('You need to add a title x');
@@ -35,7 +37,7 @@ describe('Todo Form', function () {
     });
 
     it('triggers #addItem action', function () {
-        var input = TestUtils.findRenderedDOMComponentWithClass(form, 'input');
+        input = TestUtils.findRenderedDOMComponentWithClass(form, 'input');
         
         input.getDOMNode().value = "Write a test";
     
