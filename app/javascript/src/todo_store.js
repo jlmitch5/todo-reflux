@@ -63,6 +63,13 @@ var TodoListStore = Reflux.createStore({
 
         this.updateList(list);
     },
+    onResortList: function (from, to) {
+        var y = _.find(this.list, function (todo) { return todo.key === to; });
+        var x = _.find(this.list, function (todo) { return todo.key === from; });
+
+        var list = _.compact(this.list.move(_.indexOf(this.list, y), _.indexOf(this.list, x)));
+        this.updateList(list);
+    },
     updateList: function (list) {
         this.list = list;
         this.trigger(list);

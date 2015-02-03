@@ -25,7 +25,8 @@ var TodoActions = Reflux.createActions([
     "completeTodo",     //called when ticking checkbox
     "addTodo",          //called when clicking Add todo button
     "removeTodo",       //called when click the Trash icon
-    "completeAll"       //called when clicking link in footer
+    "completeAll",      //called when clicking link in footer
+    "resortList"        //called when dropping a list item
 ]);
 
 TodoActions.addTodo.preEmit = function (todo) {
