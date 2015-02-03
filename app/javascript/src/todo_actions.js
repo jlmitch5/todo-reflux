@@ -30,9 +30,7 @@ var TodoActions = Reflux.createActions([
 ]);
 
 TodoActions.addTodo.preEmit = function (todo) {
-    request.post('/todos/', {todo: todo}, function () {
-        TodoActions.addTodo(todo);
-    });
+    request.post('/todos/', {todo: todo}, function () {});
 };
 
 TodoActions.removeTodo.preEmit = function (id) {

@@ -24,7 +24,9 @@ var TodoForm = React.createClass({
             TodoActions.addTodo(todoTitle);
 
             this.refs.todo.getDOMNode().value = '';
-            this.setState({showWarning: false});
+            this.setState({
+                showWarning: false
+            });
         } else {
             this.toggleWarning();
         }
