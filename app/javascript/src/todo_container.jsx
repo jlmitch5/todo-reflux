@@ -8,8 +8,11 @@ var TodoFooter = require('./todo_footer.jsx');
 
 /**
  * TodoContainer renders all Todo-related components
+ *
+ * @load TodoActions#load->onLoad();
  */
 var TodoContainer = React.createClass({
+    displayName: 'TodoContainer',
     componentDidMount: function () {
         TodoActions.load();
     },
@@ -32,6 +35,5 @@ var TodoContainer = React.createClass({
         );        
     }
 });
-
 
 module.exports = TodoContainer;
