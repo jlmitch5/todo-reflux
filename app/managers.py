@@ -9,6 +9,12 @@ class ModelManager(object):
         else:
             return self
 
+    def update(self, data):
+        for attr, value in data.iteritems():
+            if hasattr(self, attr):
+                setattr(self, attr, value)
+        self.save()
+
     def delete(self, commit=True):
         db.session.delete(self)
         if commit:
