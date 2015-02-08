@@ -38,7 +38,7 @@ TodoActions.removeTodo.preEmit = function (id) {
 };
 
 TodoActions.completeTodo.preEmit = function (id) {
-    request.patch('/todo/'+id+'/', {"is_checked": true}, function () {});
+    request.put('/todo/'+id+'/', {"is_checked": true}, function () {});
 };
 
 TodoActions.completeAll.preEmit = function() {

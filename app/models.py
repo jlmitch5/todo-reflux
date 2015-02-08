@@ -21,4 +21,4 @@ class Todo(db.Model, managers.ModelManager):
         }
 
     def __repr__(self):
-        return '<Todo %s>' % self.title
+        return '<Todo {0} is_checked={1}>'.format(self.title, self.is_checked)

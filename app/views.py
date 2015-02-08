@@ -18,7 +18,7 @@ def create_todo():
     todo.save()
     return jsonify(**todo.as_json)
 
-@app.route('/todo/<int:todo_id>/', methods=['PATCH'])
+@app.route('/todo/<int:todo_id>/', methods=['PUT'])
 def update_todo(todo_id):
     todo = Todo.query.get(todo_id)
     todo.update(request.get_json())
@@ -38,17 +38,16 @@ def get_todos():
     for todo in todos:
         todos_as_json.append({
                 'title': todo.title,
-                'is_checked': todo.is_checked,
-                'created_at': todo.created_at,
+                'isChecked': todo.is_checked,
+                'createdAt': todo.created_at,
                 'key': todo.id
             })
     return jsonify(todos=todos_as_json)
 
-@app.route('/todos/', methods=['PATCH'])
+@app.route('/todos/check-all/', methods=['PUT'])
 def check_todos():
-    todo_data = request.json.get_json()
     todos = Todo.query.all()
     for todo in todos:
-        todo.update(todo_data)
+        todo.update({'is_checked': True})
     return Response(status=204, mimetype='application/json')
 
