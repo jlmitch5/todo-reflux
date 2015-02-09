@@ -30,15 +30,15 @@ var TodoActions = Reflux.createActions([
 ]);
 
 TodoActions.addTodo.preEmit = function (todo) {
-    request.post('/todos/', {todo: todo}, function () {});
+    request.post('/todo/', {todo: todo}, function () {});
 };
 
 TodoActions.removeTodo.preEmit = function (id) {
-    request.del('/todos/'+id+'/', function () {});
+    request.del('/todo/'+id+'/', function () {});
 };
 
 TodoActions.completeTodo.preEmit = function (id) {
-    request.put('/todos/'+id+'/', function () {});
+    request.put('/todo/'+id+'/', {"is_checked": true}, function () {});
 };
 
 TodoActions.completeAll.preEmit = function() {
