@@ -1,3 +1,6 @@
+Install frontend app with `npm install`
+Install backend with `pip install -r requirments.txt`
+
 Create db with `python create_db.py`
 Run app with `python runserver.py`
 
