@@ -8,7 +8,7 @@ var TodoActions = require('./todo_actions.js');
  * Represents one list item and triggers the following actions
  *
  * @completeTodo TodoActions#completeTodo->#onCompleteTodo
- * @removeTodo TodoActions#removeTodo->onRemoveTodo
+ * @removeTodo TodoActions#removeTodo->#onRemoveTodo
  */
 var TodoItem = React.createClass({
     displayName: 'TodoItem',
@@ -29,7 +29,7 @@ var TodoItem = React.createClass({
         TodoActions.completeTodo(this.props.todo.key);
     },
     removeTodo: function () {
-        TodoActions.removeTodo(this.props.todo.key);            
+        TodoActions.removeTodo(this.props.todo.key);
     },
     render: function () {
         var cx = React.addons.classSet;
@@ -45,12 +45,12 @@ var TodoItem = React.createClass({
         return (
             <li className="todo-item" draggable="true" key={this.props.todo.key} data-id={this.props.todo.key} >
                 <div>
-                    <input type="checkbox" 
-                           id={this.props.todo.key} 
-                           name={this.props.todo.key} 
+                    <input type="checkbox"
+                           id={this.props.todo.key}
+                           name={this.props.todo.key}
                            checked={this.state.isChecked || this.props.todo.isChecked}
                            onChange={this.handleChange}
-                           onClick={this.completeTodo} /> 
+                           onClick={this.completeTodo} />
 
                     <label htmlFor={this.props.todo.key} className={labelClasses}></label>
                     <p className={'text ' + todoTitleClasses}>
@@ -61,7 +61,7 @@ var TodoItem = React.createClass({
                     <span className="icon-trash" onClick={this.removeTodo}></span>
                 </div>
             </li>
-        );        
+        );
     }
 });
 

@@ -273,3 +273,8 @@ ul {
   text-align: right;
   color: #448ccb;
 }
+.footer .delete-all {
+  float: right;
+  text-align: right;
+  color: #cc0000;
+}

@@ -25,6 +25,7 @@ var TodoActions = Reflux.createActions([
     "completeTodo",     //called when ticking checkbox
     "addTodo",          //called when clicking Add todo button
     "removeTodo",       //called when click the Trash icon
+    "removeAll",
     "completeAll",      //called when clicking link in footer
     "resortList"        //called when dropping a list item
 ]);
@@ -35,6 +36,10 @@ TodoActions.addTodo.preEmit = function (todo) {
 
 TodoActions.removeTodo.preEmit = function (id) {
     request.del('/todo/'+id+'/', function () {});
+};
+
+TodoActions.removeAll.preEmit = function () {
+    request.del('/todos/delete-all/', function () {});
 };
 
 TodoActions.completeTodo.preEmit = function (id) {

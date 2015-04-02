@@ -9,11 +9,15 @@ var TodoCounter = require('./todo_counter.jsx');
  * handles checking of all todos.
  *
  * @completeAll TodoActions#completeAll->onCompleteAll();
+ * @removeAll TodoActions#removeAll->onRemoveAll();
  */
 var TodoFooter = React.createClass({
     displayName: 'TodoFooter',
+    deleteAll: function () {
+        TodoActions.removeAll();
+    },
     markAllCompleted: function () {
-        TodoActions.completeAll();                  
+        TodoActions.completeAll();
     },
     render: function () {
         return (
@@ -24,8 +28,11 @@ var TodoFooter = React.createClass({
                 <li className="clear-all">
                     <a onClick={this.markAllCompleted}>Mark all as complete</a>
                 </li>
+                <li className="delete-all">
+                    <a onClick={this.deleteAll}>Delete all todos</a>
+                </li>
             </ul>
-        );        
+        );
     }
 });
 

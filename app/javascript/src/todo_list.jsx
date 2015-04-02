@@ -8,7 +8,7 @@ var Sorter = require('./sorter.js');
 var TodoList = React.createClass({
     displayName: 'TodoList',
     propTypes: {
-        todos: React.PropTypes.array           
+        todos: React.PropTypes.array
     },
     componentDidMount: function () {
         setTimeout(function () {
@@ -30,7 +30,9 @@ var TodoList = React.createClass({
             );
         } else {
             return (
-                <div className="empty-list">There is nothing here! Why dont you add something?</div>
+                <ReactCSSTransitionGroup transitionName="jelly">
+                    <div className="empty-list">There is nothing here! Why dont you add something?</div>
+                </ReactCSSTransitionGroup>
             );
         }
     }

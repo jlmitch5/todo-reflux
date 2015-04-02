@@ -51,3 +51,9 @@ def check_todos():
         todo.update({'is_checked': True})
     return Response(status=204, mimetype='application/json')
 
+@app.route('/todos/delete-all/', methods=['DELETE'])
+def delete_todos():
+    todos = Todo.query.all()
+    for todo in todos:
+        todo.delete()
+    return Response(status=204, mimetype='application/json')
